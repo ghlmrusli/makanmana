@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Makan mana?</title>
+    <title>😋 Makan mana?</title>
     <style>
         * {
             margin: 0;
@@ -329,12 +329,15 @@
             width: 8px;
             height: 8px;
             will-change: transform, opacity;
-            animation: confetti-fall 2.5s linear forwards;
+            animation: confetti-fall 2.5s ease-out forwards;
         }
 
         @keyframes confetti-fall {
             0% {
                 transform: translate3d(0, 0, 0) rotateZ(0deg);
+                opacity: 1;
+            }
+            80% {
                 opacity: 1;
             }
             100% {
@@ -898,13 +901,20 @@
                 confetti.style.left = Math.random() * 100 + '%';
                 confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.animationDelay = Math.random() * 0.3 + 's';
+                confetti.style.transition = 'opacity 0.3s ease-out';
                 confettiContainer.appendChild(confetti);
             }
+            
+            // Fade out before cleanup for smoother removal
+            setTimeout(() => {
+                const allConfetti = confettiContainer.querySelectorAll('.confetti');
+                allConfetti.forEach(c => c.style.opacity = '0');
+            }, 2400);
             
             // Clean up after animation
             setTimeout(() => {
                 confettiContainer.innerHTML = '';
-            }, 3000);
+            }, 2800);
         }
 
         // Utility functions
