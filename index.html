@@ -746,6 +746,10 @@
         const modalOverlay = document.getElementById('modalOverlay');
         const cancelBtn = document.getElementById('cancelBtn');
 
+        // Sound Effect
+        const celebrationSound = new Audio('./celebration.mp3'); 
+        celebrationSound.volume = 0.3;
+
         // Initialize
         startGameBtn.addEventListener('click', startGame);
         resetBtn.addEventListener('click', resetGame);
